@@ -39,5 +39,8 @@ void draw(){
   for(int i=0; i<N_AGENTS; i++){
     force = computeGravityForce(movers[i]);
     /* your code*/
+    movers[i].applyForce(force);
+    movers[i].update();
+    movers[i].draw();
   }
 }

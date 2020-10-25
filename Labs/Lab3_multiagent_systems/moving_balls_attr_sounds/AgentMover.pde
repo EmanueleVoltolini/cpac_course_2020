@@ -1,8 +1,8 @@
 
 float alpha=0.1;  
 float dist_min=1;
-float dist_max=30;
-float velocity_max=20;
+float dist_max=20;
+float velocity_max=15;
   
 class AgentMover{
   PVector position, velocity, acceleration;
