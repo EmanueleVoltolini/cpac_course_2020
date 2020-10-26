@@ -61,12 +61,15 @@ void mousePressed() {
     Boid b = new Boid(box2d, cs, bd, P2W(mouseX, mouseY));
     boids.add(b);     
     /* your code*/
-    
+    Vec2 force = new Vec2(random(-50,50),random(-50,50));
+    b.applyForce(force.mul(SCALEFORCE));
   }
   if(mouseButton==RIGHT){
     Vec2 force;
     for(Boid b: boids){
       /* your code*/
+      force = new Vec2(random(-50,50),random(-50,50));
+      b.applyForce(force.mul(SCALEFORCE));
     }
   }
 }

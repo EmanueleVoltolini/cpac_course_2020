@@ -60,7 +60,9 @@ void mousePressed() {
  if(mouseButton==LEFT){//insert a new box
     int p=path.closestTarget(P2W(mouseX, mouseY));
     Boid b = new Boid(box2d, cs, bd, P2W(mouseX, mouseY), p);
-    boids.add(b);     
+    boids.add(b); 
+    Vec2 force = computeForce(b);
+    b.applyForce(force);
   }
   if(mouseButton==RIGHT){ 
     ;
@@ -79,7 +81,9 @@ Vec2 computeForce(Boid b){
   // your code: compute steering
   Vec2 velocity=b.body.getLinearVelocity();
 
-  Vec2 steering = new Vec2(0,0);  
+  Vec2 steering = new Vec2(0,0);
+  steering = direction.sub(velocity);
+  
   if(DRAW_ANCHORS){ 
     strokeWeight(2);
     stroke(255);

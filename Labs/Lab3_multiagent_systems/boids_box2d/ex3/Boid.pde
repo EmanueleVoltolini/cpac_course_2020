@@ -43,7 +43,9 @@ class Boid{
       for(Boid other: boids){        
         if(this.body==other.body){continue;}
         // your code
-        
+        /*otherVel = 
+        if(myPoW==other
+        */
       }
       // your code
       if(avoid_force.length()>0){this.applyForce(avoid_force);}
