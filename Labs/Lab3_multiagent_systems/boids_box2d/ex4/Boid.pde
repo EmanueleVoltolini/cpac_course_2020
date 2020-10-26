@@ -32,21 +32,17 @@ class Boid{
     void draw(){
         Vec2 posPixel=this.box2d.getBodyPixelCoord(this.body);
         /* your code here*/
-        color c = lerpColor (defColor, contactColor, value);
-        fill(c);
+        fill(lerpColor(this.contactColor, this.defColor, map(this.time_index, 0, this.time_to_color,0,1)));
+
         stroke(0);
         strokeWeight(0);        
         ellipse(posPixel.x, posPixel.y, RADIUS_BOID, RADIUS_BOID);   
-        
+        this.time_index=min(this.time_index+1, this.time_to_color);
     }
 
     void changeColor(){
       /* your code here; you also need to modify draw()*/
-      value = 1;
-      
-      this.draw();
-      
-      
+      this.time_index = 0;     
     }
     void play(){
       /* your code here*/ 
