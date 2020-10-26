@@ -1,6 +1,7 @@
 
 float AVOID_DIST=6;
 float ALIGN_DIST=25;
+float value = 0;
 class Boid{
     Body body;
     Box2DProcessing  box2d;
@@ -30,14 +31,27 @@ class Boid{
     }
     void draw(){
         Vec2 posPixel=this.box2d.getBodyPixelCoord(this.body);
-        /* your code here*/        
+        /* your code here*/
+        color c = lerpColor (defColor, contactColor, value);
+        fill(c);
+        stroke(0);
+        strokeWeight(0);        
+        ellipse(posPixel.x, posPixel.y, RADIUS_BOID, RADIUS_BOID);   
+        
     }
 
     void changeColor(){
       /* your code here; you also need to modify draw()*/
+      value = 1;
+      
+      this.draw();
+      
+      
     }
     void play(){
-      /* your code here*/    
+      /* your code here*/ 
+      this.sample.play();
+      
     }
     void update(ArrayList<Boid> boids){
       Vec2 myPosW=this.body.getPosition();
