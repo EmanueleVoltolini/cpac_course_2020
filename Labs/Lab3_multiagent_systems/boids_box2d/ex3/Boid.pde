@@ -1,5 +1,5 @@
 
-float AVOID_DIST=6;
+float AVOID_DIST=20;
 float ALIGN_DIST=25;
 class Boid{
     Body body;
@@ -43,9 +43,18 @@ class Boid{
       for(Boid other: boids){        
         if(this.body==other.body){continue;}
         // your code
-        /*otherVel = 
-        if(myPoW==other
-        */
+        otherPosW = other.body.getPosition();
+        direction = otherPosW.sub(myPosW);
+        if(direction.length()<= AVOID_DIST){
+          direction.normalize();
+          avoid_force.add(direction.mul(-1));
+        }
+        else if (direction.length() <= ALIGN_DIST){
+          otherVel = other.body.getLinearVelocity();
+         
+          align_force.add(myVel.sub(otherVel));         
+        }
+        
       }
       // your code
       if(avoid_force.length()>0){this.applyForce(avoid_force);}
