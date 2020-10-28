@@ -72,7 +72,7 @@ def write_mix(Cs, gains=None, fn_out="out.wav"):
         Gs[i].create_sequence(START_SEQUENCE)
         Cs[i].create_sequence(Gs[i].sequence)
         track.append(Cs[i].sequence)                            
-    #track=0.707*track/np.max(np.abs(track))
+    track=0.707*track/np.max(np.abs(track))
     sf.write(fn_out, track, Cs[0].sr)
 
 # %% Grammar Sequence
