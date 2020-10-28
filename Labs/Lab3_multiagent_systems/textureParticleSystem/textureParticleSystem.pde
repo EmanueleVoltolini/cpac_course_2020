@@ -4,7 +4,7 @@ PImage img;
 
 AudioIn audio;
 
-boolean song_mic=true;
+boolean song_mic=false;
 void setup(){
   size(1280,720, P2D);
   PVector origin=new PVector(0.75*width, height);
@@ -21,7 +21,7 @@ void setup(){
 PVector computeWind(){  
   float energy= audio.getEnergy();
   /* your code here */
-  return new PVector(0,0);
+  return new PVector(-energy,0);
 }
 
 void draw(){

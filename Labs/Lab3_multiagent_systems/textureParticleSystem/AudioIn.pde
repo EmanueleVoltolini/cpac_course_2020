@@ -32,6 +32,9 @@ class AudioIn{
     else{this.fft.forward(this.mic.mix);}
     float energy = 0;
     /* your code here*/
+    for(int i = 0; i < fft.specSize(); i++){
+    energy+=pow(fft.getBand(i),2);      
+    }   
     energy=map(energy,0, this.fft.specSize(), 0, 1);
     this.energy= this.energy*0.1+energy*0.9;    
     return this.energy;
