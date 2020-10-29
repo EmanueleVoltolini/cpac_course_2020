@@ -66,12 +66,14 @@ word_dur={"h":0.5, # half-measure
 # write_mix
 def write_mix(Cs, gains=None, fn_out="out.wav"):
     # your code
-    track = []
+    tracks = []
+    len_sequence = []
+    for i in range(len(Cs)):
+        tracks.append(Cs[i].sequence)
+        len_sequence.append(len(tracks[i]))
+    track = np.zeros(np.min(len_sequence))
     for i in range(len(samples)):
-        Cs.append(Composer(samples[i], BPM=120))
-        Gs[i].create_sequence(START_SEQUENCE)
-        Cs[i].create_sequence(Gs[i].sequence)
-        track.append(Cs[i].sequence)                            
+        track = track + tracks[i][0:len(track)]*gains[i]                           
     track=0.707*track/np.max(np.abs(track))
     sf.write(fn_out, track, Cs[0].sr)
 
@@ -216,9 +218,12 @@ if __name__=="__main__":
         fn_out="multitrack.wav"
         Gs=[]  #list of Grammar_Sequence
         Cs=[]  #list of Composer
+        SR=16000 # use a common sr
         for i in range(len(samples)):
             Gs.append(Grammar_Sequence(grammars[i])) 
-        SR=16000 # use a common sr
+            Cs.append(Composer(samples[i], SR, BPM=120))
+            Gs[i].create_sequence(START_SEQUENCE)
+            Cs[i].create_sequence(Gs[i].sequence)
     if MONO_COMPOSITION:
         seqs=G.create_sequence(START_SEQUENCE)
         print("\n".join(seqs), "\nFinal sequence: ", G.sequence)    
