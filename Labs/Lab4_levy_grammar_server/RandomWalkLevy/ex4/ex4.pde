@@ -4,7 +4,7 @@ OscP5 oscP5;
 NetAddress ip_port;
 int PORT = 57120;
 PVector CENTER_SCREEN;
-float ALPHA_BACKGROUND=20;
+float ALPHA_BACKGROUND=2;
 int MONTECARLO_STEPS=2;
 
 Walker walker;
@@ -35,8 +35,6 @@ void draw() {
   rect(0,0,width, height);
   walker.update();
   walker.computeEffect();
-
   walker.draw();  
-  
   sendEffect(walker);
 }
